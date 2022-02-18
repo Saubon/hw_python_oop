@@ -99,8 +99,8 @@ class SportsWalking(Training):
         coef_callorie2: float = 0.029
         duration_min: float = self.duration * 60
         spent_calories: float = (((coef_callorie1 * self.weight
-                                 + (super().get_mean_speed() * 2 / self.height) 
-                                 - coef_callorie2) * coef_callorie2 
+                                 + (super().get_mean_speed() * 2 / self.height)
+                                 - coef_callorie2) * coef_callorie2
                                  * self.weight) * duration_min)
         return spent_calories
 
@@ -121,7 +121,7 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость плавания."""
-        mean_speed = (self.lenght_pool * self.count_pool 
+        mean_speed = (self.lenght_pool * self.count_pool
                       / super().M_IN_KM / self.duration)
         return mean_speed
 
