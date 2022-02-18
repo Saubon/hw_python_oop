@@ -52,7 +52,6 @@ class Training:
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
-        package = read_package
         return InfoMessage(self.__class__.__name__,
                           self.duration,
                           self.get_distance(),
@@ -114,7 +113,7 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость плавания."""
-        mean_speed = self.lenght_pool * self.count_pool / super().M_IN_KM / super().duration
+        mean_speed = self.lenght_pool * self.count_pool / super().M_IN_KM / self.duration
         return mean_speed
 
     def get_spent_calories(self) -> float:
@@ -125,9 +124,9 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     workout_types = {
-        'RUN': 'Running',
-        'WLK': 'SportWalking',
-        'SWM': 'Swimming' 
+        'RUN': Running,
+        'WLK': SportsWalking,
+        'SWM': Swimming 
     }
     workout = workout_types[workout_type](*data)
     return workout
