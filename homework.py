@@ -68,7 +68,8 @@ class Running(Training):
         self,
         action: int,
         duration: float,
-        weight: float) -> None:
+        weight: float
+        ) -> None:
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
@@ -82,12 +83,13 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    def __init__(self, 
-                action: int,
-                duration: float,
-                weight: float,
-                height: float
-                ) -> None:
+    def __init__(
+        self, 
+        action: int,
+        duration: float,
+        weight: float,
+        height: float
+        ) -> None:
         super().__init__(action, duration, weight)
         self.height = height
 
@@ -95,8 +97,8 @@ class SportsWalking(Training):
         coef_callorie1: float = 0.035
         coef_callorie2: float = 0.029
         duration_min: float = self.duration * 60
-        spent_calories: float = ((coef_callorie1 * self.weight + 
-        (super().get_mean_speed() * 2 / self.height) - coef_callorie2) 
+        spent_calories: float = ((coef_callorie1 * self.weight +
+        (super().get_mean_speed() * 2 / self.height) - coef_callorie2)
         * coef_callorie2 * self.weight) * duration_min
         return spent_calories
 
@@ -141,6 +143,7 @@ def main(training: Training) -> None:
         print('Неожиданный тип тренировки')
     else:
         print(training.show_training_info().get_message())
+
 
 if __name__ == '__main__':
     packages = [
