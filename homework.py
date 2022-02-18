@@ -15,11 +15,11 @@ class InfoMessage:
         self.speed = speed
 
     def get_message(self) -> str:
-        return str(f'Тип тренировки: {self.training_type}; ',
-                   f'Длительность: {self.duration:.3f} ч; ',
-                   f'Дистанция: {self.distance:.3f} км; ',
-                   f'Ср. скорость: {self.speed:.3f} км/ч; ',
-                   f'Потрачено ккал: {self.calories:.3f}.')
+        return (f'Тип тренировки: {self.training_type}; ',
+                f'Длительность: {self.duration:.3f} ч; ',
+                f'Дистанция: {self.distance:.3f} км; ',
+                f'Ср. скорость: {self.speed:.3f} км/ч; ',
+                f'Потрачено ккал: {self.calories:.3f}.')
 
 
 class Training:
@@ -97,10 +97,9 @@ class SportsWalking(Training):
         coef_callorie1: float = 0.035
         coef_callorie2: float = 0.029
         duration_min: float = self.duration * 60
-        spent_calories: float = (((coef_callorie1 * self.weight
-                                 + (super().get_mean_speed() * 2 / self.height)
-                                 - coef_callorie2) * coef_callorie2
-                                 * self.weight) * duration_min)
+        spent_calories: float = ((coef_callorie1 * self.weight
+                                 + (super().get_mean_speed() ** 2 // self.height)
+                                 * coef_callorie2 * self.weight) * duration_min)
         return spent_calories
 
 
