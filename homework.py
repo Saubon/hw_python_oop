@@ -84,12 +84,12 @@ class Running(Training):
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     def __init__(
-        self, 
+        self,
         action: int,
         duration: float,
         weight: float,
         height: float
-        ) -> None:
+    ) -> None:
         super().__init__(action, duration, weight)
         self.height = height
 
@@ -106,12 +106,13 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     def __init__(
-        self, 
+        self,
         action: int,
         duration: float,
         weight: float,
         lenght_pool: float,
-        count_pool: float) -> None:
+        count_pool: float
+    ) -> None:
         super().__init__(action, duration, weight)
         self.lenght_pool = lenght_pool
         self.count_pool = count_pool
