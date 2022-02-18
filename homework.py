@@ -15,12 +15,12 @@ class InfoMessage:
         self.speed = speed
 
     def get_message(self) -> str:
-        print(f'Тип тренировки: {self.training_type}; '
-              f'Длительность: {self.duration:.3f} ч; '
-              f'Дистанция: {self.distance:.3f} км; '
-              f'Ср. скорость: {self.speed:.3f} км/ч; '
-              f'Потрачено ккал: {self.calories:.3f}.'
-              )
+        return (f'Тип тренировки: {self.training_type}; '
+                + f'Длительность: {self.duration:.3f} ч; '
+                + f'Дистанция: {self.distance:.3f} км; '
+                + f'Ср. скорость: {self.speed:.3f} км/ч; '
+                + f'Потрачено ккал: {self.calories:.3f}.'
+               )
 
 
 class Training:
@@ -112,11 +112,11 @@ class Swimming(Training):
         action: int,
         duration: float,
         weight: float,
-        lenght_pool: float,
+        length_pool: float,
         count_pool: float
     ) -> None:
         super().__init__(action, duration, weight)
-        self.lenght_pool = lenght_pool
+        self.lenght_pool = length_pool
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
