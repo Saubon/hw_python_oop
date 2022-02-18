@@ -65,9 +65,9 @@ class Training:
 class Running(Training):
     """Тренировка: бег."""
     def __init__(
-        self, 
-        action: int, 
-        duration: float, 
+        self,
+        action: int,
+        duration: float,
         weight: float) -> None:
         super().__init__(action, duration, weight)
 
@@ -83,8 +83,8 @@ class Running(Training):
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     def __init__(self, 
-                action: int, 
-                duration: float, 
+                action: int,
+                duration: float,
                 weight: float,
                 height: float
                 ) -> None:
@@ -95,7 +95,8 @@ class SportsWalking(Training):
         coef_callorie1: float = 0.035
         coef_callorie2: float = 0.029
         duration_min: float = self.duration * 60
-        spent_calories: float = ((coef_callorie1 * self.weight + (super().get_mean_speed() * 2 / self.height) - coef_callorie2) 
+        spent_calories: float = ((coef_callorie1 * self.weight + 
+        (super().get_mean_speed() * 2 / self.height) - coef_callorie2) 
         * coef_callorie2 * self.weight) * duration_min
         return spent_calories
 
@@ -104,8 +105,8 @@ class Swimming(Training):
     """Тренировка: плавание."""
     def __init__(
         self, 
-        action: int, 
-        duration: float, 
+        action: int,
+        duration: float,
         weight: float,
         lenght_pool: float,
         count_pool: float) -> None:
@@ -128,7 +129,7 @@ def read_package(workout_type: str, data: list) -> Training:
     workout_types = {
         'RUN': Running,
         'WLK': SportsWalking,
-        'SWM': Swimming 
+        'SWM': Swimming
     }
     workout = workout_types[workout_type](*data)
     return workout
