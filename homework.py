@@ -26,6 +26,7 @@ class Training:
     """Базовый класс тренировки."""
     LEN_STEP: float = 0.65
     M_IN_KM: float = 1000
+    DUR_CONST: float = 60
 
     def __init__(self,
                  action: int,
@@ -63,6 +64,9 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
+    COEF_CALL1: float = 18.0
+    COEF_CALL2: float = 20.0
+
     def __init__(
         self,
         action: int,
@@ -72,17 +76,17 @@ class Running(Training):
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
-        coef_callorie1: float = 18.0
-        coef_callorie2: float = 20.0
-        duration_min: float = self.duration * 60
-        spent_calories: float = ((coef_callorie1 * super().get_mean_speed()
-                                 - coef_callorie2) * self.weight
-                                 / super().M_IN_KM * duration_min)
+        spent_calories: float = ((Running.COEF_CALL1 * super().get_mean_speed()
+                                 - Running.COEF_CALL2) * self.weight
+                                 / super().M_IN_KM * (self.duration * Training.DUR_CONST))
         return spent_calories
 
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
+    COEF_CALL1: float = 18.0
+    COEF_CALL2: float = 20.0
+
     def __init__(
         self,
         action: int,
@@ -94,13 +98,10 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self) -> float:
-        coef_c1: float = 0.035
-        coef_c2: float = 0.029
-        duration_min: float = self.duration * 60
-        spent_c: float = ((coef_c1 * self.weight
+        spent_callories: float = ((SportsWalking.COEF_CALL1 * self.weight
                           + (super().get_mean_speed() ** 2 // self.height)
-                          * coef_c2 * self.weight) * duration_min)
-        return spent_c
+                          * SportsWalking.COEF_CALL2 * self.weight) * (self.duration * Training.DUR_CONST))
+        return spent_callories
 
 
 class Swimming(Training):
