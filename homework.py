@@ -85,8 +85,8 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    COEF_CALL1: float = 18.0
-    COEF_CALL2: float = 20.0
+    COEF_CALL1: float = 0.035
+    COEF_CALL2: float = 0.029
 
     def __init__(
         self,
