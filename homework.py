@@ -1,7 +1,6 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
-    def __init__(
-        self,
+    def __init__(self,
         training_type: str,
         duration: float,
         distance: float,
@@ -25,8 +24,8 @@ class InfoMessage:
 class Training:
     """Базовый класс тренировки."""
     LEN_STEP: float = 0.65
-    M_IN_KM: float = 1000
-    DUR_CONST: float = 60
+    M_IN_KM = 1000
+    DUR_CONST = 60
 
     def __init__(self,
                  action: int,
@@ -67,8 +66,7 @@ class Running(Training):
     COEF_CALL1: float = 18.0
     COEF_CALL2: float = 20.0
 
-    def __init__(
-        self,
+    def __init__(self,
         action: int,
         duration: float,
         weight: float
@@ -76,8 +74,8 @@ class Running(Training):
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
-        spent_calories: float = ((Running.COEF_CALL1 * super().get_mean_speed()
-                                 - Running.COEF_CALL2) * self.weight
+        spent_calories: float = ((self.COEF_CALL1 * super().get_mean_speed()
+                                 - self.COEF_CALL2) * self.weight
                                  / super().M_IN_KM
                                  * (self.duration * Training.DUR_CONST))
         return spent_calories
@@ -88,8 +86,7 @@ class SportsWalking(Training):
     COEF_CALL1: float = 0.035
     COEF_CALL2: float = 0.029
 
-    def __init__(
-        self,
+    def __init__(self,
         action: int,
         duration: float,
         weight: float,
@@ -109,9 +106,9 @@ class SportsWalking(Training):
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP: float = 1.38
+    COEF_PLUS: float = 1.1
 
-    def __init__(
-        self,
+    def __init__(self,
         action: int,
         duration: float,
         weight: float,
@@ -129,7 +126,8 @@ class Swimming(Training):
         return mean_speed
 
     def get_spent_calories(self) -> float:
-        spent_calories = (self.get_mean_speed() + 1.1) * 2 * self.weight
+        spent_calories = ((self.get_mean_speed() + self.COEF_PLUS)
+                          * 2 * self.weight)
         return spent_calories
 
 
