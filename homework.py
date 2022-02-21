@@ -1,12 +1,12 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
     def __init__(self,
-        training_type: str,
-        duration: float,
-        distance: float,
-        speed: float,
-        calories: float
-    ) -> None:
+                 training_type: str,
+                 duration: float,
+                 distance: float,
+                 speed: float,
+                 calories: float
+                 ) -> None:
         self.training_type = training_type
         self.duration = duration
         self.distance = distance
@@ -67,10 +67,10 @@ class Running(Training):
     COEF_CALL2: float = 20.0
 
     def __init__(self,
-        action: int,
-        duration: float,
-        weight: float
-    ) -> None:
+                 action: int,
+                 duration: float,
+                 weight: float
+                 ) -> None:
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
@@ -87,11 +87,11 @@ class SportsWalking(Training):
     COEF_CALL2: float = 0.029
 
     def __init__(self,
-        action: int,
-        duration: float,
-        weight: float,
-        height: float
-    ) -> None:
+                 action: int,
+                 duration: float,
+                 weight: float,
+                 height: float
+                 ) -> None:
         super().__init__(action, duration, weight)
         self.height = height
 
@@ -109,12 +109,12 @@ class Swimming(Training):
     COEF_PLUS: float = 1.1
 
     def __init__(self,
-        action: int,
-        duration: float,
-        weight: float,
-        length_pool: float,
-        count_pool: float
-    ) -> None:
+                 action: int,
+                 duration: float,
+                 weight: float,
+                 length_pool: float,
+                 count_pool: float
+                 ) -> None:
         super().__init__(action, duration, weight)
         self.lenght_pool = length_pool
         self.count_pool = count_pool
